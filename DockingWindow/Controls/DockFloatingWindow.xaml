@@ -1,0 +1,14 @@
+﻿<Window x:Class="SunokoLibrary.Windows.Controls.DockFloatingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:SunokoLibrary.Windows.Controls"
+        Title="DockFloatingWindow"
+        WindowStyle="ToolWindow"
+        Left="{Binding ElementName=bay, Path=WindowLeft, Mode=TwoWay}"
+        Top="{Binding ElementName=bay, Path=WindowTop, Mode=TwoWay}"
+        Width="{Binding ElementName=bay, Path=WindowWidth, Mode=TwoWay}"
+        Height="{Binding ElementName=bay, Path=WindowHeight, Mode=TwoWay}">
+    <Window.CommandBindings>
+        <CommandBinding Command="local:DockCommands.CloseFloatForm" Executed="BayClosedCmd_Executed" />
+    </Window.CommandBindings>
+</Window>

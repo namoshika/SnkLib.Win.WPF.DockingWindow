@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4DD983A5-3AB3-4A40-816F-94833511FF53}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SunokoLibrary.Windows</RootNamespace>
+    <AssemblyName>DockingWindow</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\DockFloatingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DockingHelper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Indicator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\DockBay.cs" />
+    <Compile Include="Controls\DockCommands.cs" />
+    <Compile Include="Controls\DockFloatableBay.cs" />
+    <Compile Include="Controls\DockFloatingBay.cs" />
+    <Compile Include="Controls\DockFloatingWindow.xaml.cs">
+      <DependentUpon>DockFloatingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DockingHelper.xaml.cs">
+      <DependentUpon>DockingHelper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DockNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\DockNodeLayoutEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\DockBayBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\DockBayLayoutEngine.cs" />
+    <Compile Include="Controls\DockPane.cs" />
+    <Compile Include="Controls\DockPaneBase.cs" />
+    <Compile Include="Controls\DockPaneLayoutEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\DockTitleBar.cs" />
+    <Compile Include="Controls\Indicator.xaml.cs">
+      <DependentUpon>Indicator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Primitives\DockDirectionToDockConverter.cs" />
+    <Compile Include="Controls\Primitives\EnclosePanel.cs" />
+    <Compile Include="Controls\Primitives\ExDockPanel.cs" />
+    <Compile Include="Controls\Primitives\SplitterWidthAndAlignToWidthConverter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Controls\Primitives\RelayCommand.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DockIndicator_PaneDiamond.png" />
+    <Resource Include="Resources\DockIndicator_PaneDiamond_Bottom.png" />
+    <Resource Include="Resources\Dockindicator_PaneDiamond_Fill.png" />
+    <Resource Include="Resources\DockIndicator_PaneDiamond_Left.png" />
+    <Resource Include="Resources\DockIndicator_PaneDiamond_Right.png" />
+    <Resource Include="Resources\DockIndicator_PaneDiamond_Top.png" />
+    <Resource Include="Resources\DockIndicator_PanelBottom.png" />
+    <Resource Include="Resources\DockIndicator_PanelBottom_Active.png" />
+    <Resource Include="Resources\DockIndicator_PanelLeft.png" />
+    <Resource Include="Resources\DockIndicator_PanelLeft_Active.png" />
+    <Resource Include="Resources\DockIndicator_PanelRight.png" />
+    <Resource Include="Resources\DockIndicator_PanelRight_Active.png" />
+    <Resource Include="Resources\DockIndicator_PanelTop.png" />
+    <Resource Include="Resources\DockIndicator_PanelTop_Active.png" />
+    <Resource Include="Resources\InnerBottomtIndicator.png" />
+    <Resource Include="Resources\InnerBottomtIndicator_Active.png" />
+    <Resource Include="Resources\InnerCenterIndicator.png" />
+    <Resource Include="Resources\InnerCenterIndicator_Active.png" />
+    <Resource Include="Resources\InnerLeftIndicator.png" />
+    <Resource Include="Resources\InnerLeftIndicator_Active.png" />
+    <Resource Include="Resources\InnerRightIndicator.png" />
+    <Resource Include="Resources\InnerRightIndicator_Active.png" />
+    <Resource Include="Resources\InnerTopIndicator.png" />
+    <Resource Include="Resources\InnerTopIndicator_Active.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,34 @@
+﻿<Window x:Class="SampleProject.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:lib="clr-namespace:SunokoLibrary.Windows.Controls;assembly=DockingWindow"
+        Title="MainWindow" Height="350" Width="350">
+    <Grid>
+        <lib:DockBay Name="bay">
+            <lib:DockPane Name="pl1A" Align="Top">
+                <lib:DockPane Name="pl2A" Align="Top" Length="0.35(100)" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}" />
+                <lib:DockPane Name="pl2B" Align="Left" Length="0.35(250)" />
+                <lib:DockPane Name="pl2C" Align="Top" Length="0.5(220)" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                    <lib:DockPane.Content>
+                        <StackPanel>
+                            <Label Content="{Binding ElementName=pl2C, Path=SplitterVisible}" />
+                            <Label Content="{Binding ElementName=pl2C, Path=(lib:DockBayBase.SplitterWidth)}" />
+                            <Label Content="{Binding ElementName=pl2C, Path=Align}" />
+                        </StackPanel>
+                    </lib:DockPane.Content>
+                    <lib:DockPane Name="pl3A" Align="Right" Length="0.5" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                        <lib:DockPane.Content>
+                            <Button />
+                        </lib:DockPane.Content>
+                    </lib:DockPane>
+                    <lib:DockPane Name="pl3B" Align="Top" Length="0.5">
+                        <lib:DockPane.Content>
+                            <Button />
+                        </lib:DockPane.Content>
+                    </lib:DockPane>
+                </lib:DockPane>
+            </lib:DockPane>
+            <lib:DockPane Name="pl1B" Align="Left" Length="0.35(250)" />
+        </lib:DockBay>
+    </Grid>
+</Window>

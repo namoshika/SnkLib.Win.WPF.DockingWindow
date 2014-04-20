@@ -1,0 +1,249 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:SunokoLibrary.Windows.Controls"
+    xmlns:localPri="clr-namespace:SunokoLibrary.Windows.Controls.Primitives">
+
+    <Style TargetType="{x:Type local:DockBayBase}">
+        <Setter Property="SplitterBrush" Value="{x:Static SystemColors.ControlBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:DockBayBase}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ItemsPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <localPri:ExDockPanel />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type local:DockFloatableBay}">
+        <Setter Property="SplitterBrush" Value="{x:Static SystemColors.ControlBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:DockFloatableBay}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ItemsPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <localPri:ExDockPanel />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="splitterStyleDef">
+        <Style.Triggers>
+            <Trigger Property="DockPanel.Dock" Value="Top">
+                <Setter Property="Thumb.Cursor" Value="SizeNS" />
+            </Trigger>
+            <Trigger Property="DockPanel.Dock" Value="Bottom">
+                <Setter Property="Thumb.Cursor" Value="SizeNS" />
+            </Trigger>
+            <Trigger Property="DockPanel.Dock" Value="Left">
+                <Setter Property="Thumb.Cursor" Value="SizeWE" />
+            </Trigger>
+            <Trigger Property="DockPanel.Dock" Value="Right">
+                <Setter Property="Thumb.Cursor" Value="SizeWE" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="{x:Type local:DockPaneBase}">
+        <Style.Resources>
+            <BooleanToVisibilityConverter x:Key="btovConverter" />
+            <localPri:DockDirectionToDock x:Key="dtodConverter" />
+            <localPri:SplitterWidthAndAlignToSizeConverter x:Key="stosConverter" />
+        </Style.Resources>
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{x:Static SystemColors.ControlDarkDarkBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:DockPaneBase}">
+                    <DockPanel>
+                        <Thumb Name="DPB_Splitter"
+                               Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SplitterVisible, Converter={StaticResource btovConverter}}"
+                               DockPanel.Dock="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Align, Converter={StaticResource dtodConverter}}"
+                               Background="LightGreen" Style="{StaticResource splitterStyleDef}">
+                            <Thumb.Template>
+                                <ControlTemplate>
+                                    <Rectangle VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                               Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:DockBayBase.SplitterBrush)}" />
+                                </ControlTemplate>
+                            </Thumb.Template>
+                            <Thumb.Width>
+                                <MultiBinding Converter="{StaticResource stosConverter}" ConverterParameter="width">
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Align" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(local:DockBayBase.SplitterWidth)" />
+                                </MultiBinding>
+                            </Thumb.Width>
+                            <Thumb.Height>
+                                <MultiBinding Converter="{StaticResource stosConverter}" ConverterParameter="height">
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Align" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(local:DockBayBase.SplitterWidth)" />
+                                </MultiBinding>
+                            </Thumb.Height>
+                        </Thumb>
+                        <Grid>
+                            <ItemsPresenter />
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Width="{TemplateBinding ContentWidth}"
+                                    Height="{TemplateBinding ContentHeight}"
+                                    HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Border.RenderTransform>
+                                    <TranslateTransform
+                                        X="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ContentLeft}"
+                                        Y="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ContentTop}" />
+                                </Border.RenderTransform>
+                                <ContentPresenter />
+                            </Border>
+                        </Grid>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <localPri:EnclosePanel
+                        CenterLeft="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DockPaneBase}}, Path=ContentLeft, Mode=OneWayToSource}"
+                        CenterTop="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DockPaneBase}}, Path=ContentTop, Mode=OneWayToSource}"
+                        CenterWidth="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DockPaneBase}}, Path=ContentWidth, Mode=OneWayToSource}"
+                        CenterHeight="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DockPaneBase}}, Path=ContentHeight, Mode=OneWayToSource}" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type local:DockPane}">
+        <Style.Resources>
+            <BooleanToVisibilityConverter x:Key="btovConverter" />
+            <localPri:DockDirectionToDock x:Key="dtodConverter" />
+            <localPri:SplitterWidthAndAlignToSizeConverter x:Key="stosConverter" />
+        </Style.Resources>
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{x:Static SystemColors.ControlDarkDarkBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:DockPane}">
+                    <DockPanel>
+                        <Thumb Name="DPB_Splitter"
+                               Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SplitterVisible, Converter={StaticResource btovConverter}}"
+                               DockPanel.Dock="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Align, Converter={StaticResource dtodConverter}}"
+                               Background="LightGreen" Style="{StaticResource splitterStyleDef}">
+                            <Thumb.Template>
+                                <ControlTemplate>
+                                    <Rectangle VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                               Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:DockBayBase.SplitterBrush)}" />
+                                </ControlTemplate>
+                            </Thumb.Template>
+                            <Thumb.Width>
+                                <MultiBinding Converter="{StaticResource stosConverter}" ConverterParameter="width">
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(local:DockBayBase.SplitterWidth)" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Align" />
+                                </MultiBinding>
+                            </Thumb.Width>
+                            <Thumb.Height>
+                                <MultiBinding Converter="{StaticResource stosConverter}" ConverterParameter="height">
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(local:DockBayBase.SplitterWidth)" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Align" />
+                                </MultiBinding>
+                            </Thumb.Height>
+                        </Thumb>
+                        <Grid>
+                            <ItemsPresenter />
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Width="{TemplateBinding ContentWidth}"
+                                    Height="{TemplateBinding ContentHeight}"
+                                    HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Border.RenderTransform>
+                                    <TranslateTransform
+                                        X="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentLeft}"
+                                        Y="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentTop}" />
+                                </Border.RenderTransform>
+                                <DockPanel>
+                                    <local:DockTitleBar x:Name="DP_titleBar" DockPanel.Dock="Top"
+                                                        Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TitleBarVisible, Converter={StaticResource btovConverter}}"
+                                                        Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:DockBay.TitleBarHeight)}"
+                                                        Command="local:DockCommands.PurgeAndAttachMouse">
+                                        <local:DockTitleBar.Header>
+                                            <ContentPresenter ContentSource="Header" />
+                                        </local:DockTitleBar.Header>
+                                        <local:DockTitleBar.Items>
+                                            <Button Name="closeBtn">X</Button>
+                                            <Button Name="hideBtn">H</Button>
+                                        </local:DockTitleBar.Items>
+                                    </local:DockTitleBar>
+                                    <ContentPresenter />
+                                </DockPanel>
+                            </Border>
+                        </Grid>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <localPri:EnclosePanel
+                        CenterLeft="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DockPaneBase}}, Path=ContentLeft, Mode=OneWayToSource}"
+                        CenterTop="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DockPaneBase}}, Path=ContentTop, Mode=OneWayToSource}"
+                        CenterWidth="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DockPaneBase}}, Path=ContentWidth, Mode=OneWayToSource}"
+                        CenterHeight="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DockPaneBase}}, Path=ContentHeight, Mode=OneWayToSource}" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type local:DockTitleBar}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:DockTitleBar}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.Background>
+                            <LinearGradientBrush StartPoint="0, 0" EndPoint="0, 1">
+                                <GradientStop Color="{x:Static SystemColors.ActiveCaptionColor}" Offset="0"/>
+                                <GradientStop Color="{x:Static SystemColors.GradientActiveCaptionColor}" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Grid.Background>
+                        <ContentPresenter Grid.Column="0" ContentSource="Header" Margin="5, 0, 5, 0" />
+                        <Thumb Name="thumb" Grid.Column="0">
+                            <Thumb.Template>
+                                <ControlTemplate TargetType="Thumb">
+                                    <Rectangle Fill="Transparent" />
+                                </ControlTemplate>
+                            </Thumb.Template>
+                        </Thumb>
+                        <ItemsPresenter Grid.Column="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

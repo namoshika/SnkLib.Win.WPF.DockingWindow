@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--<BitmapImage x:Key="DockIndicator_PaneDiamond" UriSource="DockIndicator_PaneDiamond.png" />
+    <BitmapImage x:Key="DockIndicator_PaneDiamond_Bottom" UriSource="DockIndicator_PaneDiamond_Bottom.bmp" />
+    <BitmapImage x:Key="Dockindicator_PaneDiamond_Fill" UriSource="Dockindicator_PaneDiamond_Fill.bmp" />
+    <BitmapImage x:Key="DockIndicator_PaneDiamond_Left" UriSource="DockIndicator_PaneDiamond_Left.bmp" />
+    <BitmapImage x:Key="DockIndicator_PaneDiamond_Right" UriSource="DockIndicator_PaneDiamond_Right.bmp" />
+    <BitmapImage x:Key="DockIndicator_PaneDiamond_Top" UriSource="DockIndicator_PaneDiamond_Top.bmp" />-->
+
+    <BitmapImage x:Key="DockIndicator_PanelBottom" UriSource="DockIndicator_PanelBottom.png" />
+    <BitmapImage x:Key="DockIndicator_PanelBottom_Active" UriSource="DockIndicator_PanelBottom_Active.png" />
+    <BitmapImage x:Key="DockIndicator_PanelLeft" UriSource="DockIndicator_PanelLeft.png" />
+    <BitmapImage x:Key="DockIndicator_PanelLeft_Active" UriSource="DockIndicator_PanelLeft_Active.png" />
+    <BitmapImage x:Key="DockIndicator_PanelRight" UriSource="DockIndicator_PanelRight.png" />
+    <BitmapImage x:Key="DockIndicator_PanelRight_Active" UriSource="DockIndicator_PanelRight_Active.png" />
+    <BitmapImage x:Key="DockIndicator_PanelTop" UriSource="DockIndicator_PanelTop.png" />
+    <BitmapImage x:Key="DockIndicator_PanelTop_Active" UriSource="DockIndicator_PanelTop_Active.png" />
+
+    <BitmapImage x:Key="InnerBottomtIndicator" UriSource="InnerBottomtIndicator.png" />
+    <BitmapImage x:Key="InnerBottomtIndicator_Active" UriSource="InnerBottomtIndicator_Active.png" />
+    <BitmapImage x:Key="InnerCenterIndicator" UriSource="InnerCenterIndicator.png" />
+    <BitmapImage x:Key="InnerCenterIndicator_Active" UriSource="InnerCenterIndicator_Active.png" />
+    <BitmapImage x:Key="InnerLeftIndicator" UriSource="InnerLeftIndicator.png" />
+    <BitmapImage x:Key="InnerLeftIndicator_Active" UriSource="InnerLeftIndicator_Active.png" />
+    <BitmapImage x:Key="InnerRightIndicator" UriSource="InnerRightIndicator.png" />
+    <BitmapImage x:Key="InnerRightIndicator_Active" UriSource="InnerRightIndicator_Active.png" />
+    <BitmapImage x:Key="InnerTopIndicator" UriSource="InnerTopIndicator.png" />
+    <BitmapImage x:Key="InnerTopIndicator_Active" UriSource="InnerTopIndicator_Active.png" />
+</ResourceDictionary>
